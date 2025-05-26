@@ -13,7 +13,6 @@ Vérifier l'État du Système
     Input Text Into Selector    name=pass    ${PASSWORD}
     Click Element    xpath://button[@type="submit"]
     Page Should Contain    Dashboard
-    Log    Hello
     #  Récupérer les valeurs brutes (CPU, mémoire, disque)
     ${cpu_raw}=    Get Text From Selector    xpath://*[@id="system-status"]/div[2]/div[1]/div[1]/span
     ${memory_raw}=    Get Text From Selector    xpath://*[@id="system-status"]/div[2]/div[1]/div[2]/span
