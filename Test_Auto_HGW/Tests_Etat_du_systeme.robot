@@ -5,13 +5,14 @@ Resource     ../Variables/HGW_variables.robot
 *** Test Cases ***
 Vérifier l'État du Système 
     [Documentation]    Ce cas de test vérifie que les informations sur l'état du système sont correctement récupérées depuis webmin et respectent les seuils définis
-   
+
     Open a browser    ${WEBMIN_URL}    chrome
     Click Element    xpath://*[@id="details-button"]
     Click Element    xpath://*[@id="proceed-link"]
     Input Text Into Selector    id=user    ${USERNAME}
     Input Text Into Selector    name=pass    ${PASSWORD}
     Click Element    xpath://button[@type="submit"]
+    Log    Hello
     Page Should Contain    Dashboard
 
     #  Récupérer les valeurs brutes (CPU, mémoire, disque)
