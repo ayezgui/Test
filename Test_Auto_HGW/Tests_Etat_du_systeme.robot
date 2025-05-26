@@ -17,7 +17,6 @@ Vérifier l'État du Système
     ${cpu_raw}=    Get Text From Selector    xpath://*[@id="system-status"]/div[2]/div[1]/div[1]/span
     ${memory_raw}=    Get Text From Selector    xpath://*[@id="system-status"]/div[2]/div[1]/div[2]/span
     ${disk_raw}=    Get Text From Selector    xpath://*[@id="system-status"]/div[2]/div[1]/div[4]/span
-    Log    Hello
 
     # Nettoyer les chaînes pour extraire uniquement les parties numériques
     ${cpu_clean}=    Evaluate    "".join(filter(str.isdigit, """${cpu_raw}"""))    modules=re
