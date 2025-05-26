@@ -12,7 +12,6 @@ Vérifier l'État du Système
     Input Text Into Selector    id=user    ${USERNAME}
     Input Text Into Selector    name=pass    ${PASSWORD}
     Click Element    xpath://button[@type="submit"]
-    Log    Hello
     Page Should Contain    Dashboard
 
     #  Récupérer les valeurs brutes (CPU, mémoire, disque)
