@@ -23,7 +23,6 @@ Vérifier l'État du Système
     ${cpu_clean}=    Evaluate    "".join(filter(str.isdigit, """${cpu_raw}"""))    modules=re
     ${memory_clean}=    Evaluate    "".join(filter(str.isdigit, """${memory_raw}"""))    modules=re
     ${disk_clean}=    Evaluate    "".join(filter(str.isdigit, """${disk_raw}"""))    modules=re
-    Log    Hello
 
     ${cpu_usage}=    Convert To Integer    ${cpu_clean}
     ${memory_usage}=    Convert To Integer    ${memory_clean}
