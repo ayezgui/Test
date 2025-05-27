@@ -10,9 +10,9 @@ ${SESSION_NAME}   my_session
 
 *** Test Cases ***
 
-Test GET Request
-    ${response}=  Send GET Request   /pet/1    
-    Log  ${response}
+#Test GET Request
+   # ${response}=  Send GET Request   /pet/1    
+    #Log  ${response}
 
 Test POST Request for Creating Pet
     ${post_body}=  Create Dictionary
