@@ -23,3 +23,4 @@ Vérifier l'Accès Échoué à Webmin avec Identifiants Invalides
     Click Element    xpath://button[@type="submit"]
     Page Should Contain    Login failed. Please try again.
     Close a Browser
+    Log    Hello
