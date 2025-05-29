@@ -58,4 +58,5 @@ Démarrer le service OpenVNC via Webmin
     Should Contain    ${current_status}    Not running    
     Click Element    xpath://*[@id="content"]/div/div/div[2]/form/table/tbody/tr/td/div/button[1]
     Close a Browser
+   
     
