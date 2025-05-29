@@ -1,314 +1,636 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.1.1 (Python 3.13.2 on win32)" generated="20250523 09:45:12.982" rpa="false" schemaversion="4">
-<suite id="s1" name="Tests Firewall &amp; Tests firewall">
-<suite id="s1-s1" name="Tests Firewall" source="c:\Users\arezgui\Desktop\Test\Test_Auto_HGW\Tests_Firewall.robot">
-<test id="s1-s1-t1" name="Test Block HTTPS Access" line="8">
+<robot generator="Robot 6.1.1 (Python 3.13.2 on win32)" generated="20250528 10:33:23.139" rpa="false" schemaversion="4">
+<suite id="s1" name="Test" source="C:\Users\arezgui\Desktop\Test">
+<suite id="s1-s1" name="Keywords" source="C:\Users\arezgui\Desktop\Test\Keywords">
+<suite id="s1-s1-s1" name="Cryptography" source="C:\Users\arezgui\Desktop\Test\Keywords\cryptography.robot">
+<test id="s1-s1-s1-t1" name="Test Chiffrement et Déchiffrement" line="9">
+<kw name="Generate Key" library="cryptography_keywords">
+<var>${KEY}</var>
+<msg timestamp="20250528 10:33:23.361" level="INFO">${KEY} = JUcvNkl8DrZH1N2hLIsjyNLOIhwmiG5nREufXuVAYBE=</msg>
+<status status="PASS" starttime="20250528 10:33:23.361" endtime="20250528 10:33:23.361"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Clé générée: ${KEY}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20250528 10:33:23.362" level="INFO">Clé générée: JUcvNkl8DrZH1N2hLIsjyNLOIhwmiG5nREufXuVAYBE=</msg>
+<status status="PASS" starttime="20250528 10:33:23.362" endtime="20250528 10:33:23.362"/>
+</kw>
+<kw name="Read File" library="cryptography_keywords">
+<var>${TEXT}</var>
+<arg>${FILE_PATH}</arg>
+<msg timestamp="20250528 10:33:23.364" level="INFO">${TEXT} = AYA</msg>
+<status status="PASS" starttime="20250528 10:33:23.363" endtime="20250528 10:33:23.364"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Texte original: ${TEXT}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20250528 10:33:23.364" level="INFO">Texte original: AYA</msg>
+<status status="PASS" starttime="20250528 10:33:23.364" endtime="20250528 10:33:23.364"/>
+</kw>
+<kw name="Encrypt Text" library="cryptography_keywords">
+<var>${encrypted}</var>
+<arg>${KEY}</arg>
+<arg>${TEXT}</arg>
+<msg timestamp="20250528 10:33:23.382" level="INFO">${encrypted} = gAAAAABoNthjrya6KEbKTz-SX2kgj9RCrhS0iWJg5lhO4SChytXIxSVOITCtNFHiQ_h0AWWq05ql5YMavY0uPU94sFJpl38Hew==</msg>
+<status status="PASS" starttime="20250528 10:33:23.365" endtime="20250528 10:33:23.382"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Données chiffrées: ${encrypted}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20250528 10:33:23.383" level="INFO">Données chiffrées: gAAAAABoNthjrya6KEbKTz-SX2kgj9RCrhS0iWJg5lhO4SChytXIxSVOITCtNFHiQ_h0AWWq05ql5YMavY0uPU94sFJpl38Hew==</msg>
+<status status="PASS" starttime="20250528 10:33:23.382" endtime="20250528 10:33:23.383"/>
+</kw>
+<kw name="Decrypt Text" library="cryptography_keywords">
+<var>${decrypted}</var>
+<arg>${KEY}</arg>
+<arg>${encrypted}</arg>
+<msg timestamp="20250528 10:33:23.384" level="INFO">${decrypted} = AYA</msg>
+<status status="PASS" starttime="20250528 10:33:23.383" endtime="20250528 10:33:23.384"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Données déchiffrées: ${decrypted}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20250528 10:33:23.385" level="INFO">Données déchiffrées: AYA</msg>
+<status status="PASS" starttime="20250528 10:33:23.384" endtime="20250528 10:33:23.385"/>
+</kw>
+<status status="PASS" starttime="20250528 10:33:23.361" endtime="20250528 10:33:23.385"/>
+</test>
+<status status="PASS" starttime="20250528 10:33:23.224" endtime="20250528 10:33:23.387"/>
+</suite>
+<suite id="s1-s1-s2" name="Ssh Test" source="C:\Users\arezgui\Desktop\Test\Keywords\ssh_test.robot">
+<test id="s1-s1-s2-t1" name="Test SSH Connection" line="12">
 <kw name="OPEN SSH SESSION" library="ssh_keywords">
 <arg>${HOST}</arg>
 <arg>${PORT}</arg>
-<arg>${USERNAME}</arg>
+<arg>${USER}</arg>
 <arg>${PASSWORD}</arg>
 <kw name="Open Connection" library="SSHLibrary">
 <arg>${HOST}</arg>
 <arg>port=${PORT}</arg>
 <doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
-<status status="PASS" starttime="20250523 09:45:14.306" endtime="20250523 09:45:14.307"/>
+<status status="PASS" starttime="20250528 10:33:23.811" endtime="20250528 10:33:23.812"/>
 </kw>
 <kw name="Login" library="SSHLibrary">
 <arg>${USER}</arg>
 <arg>${PASSWORD}</arg>
 <doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
-<msg timestamp="20250523 09:45:14.309" level="INFO">Logging into '192.168.4.1:22' as 'pi4'.</msg>
-<msg timestamp="20250523 09:45:16.199" level="INFO">Read output: Linux raspberrypi 6.12.20+rpt-rpi-v8 #1 SMP PREEMPT Debian 1:6.12.20-1+rpt1~bpo12+1 (2025-03-19) aarch64
-
-The programs included with the Debian GNU/Linux system are free software;
-the exact distribution terms for each program are described in the
-individual files in /usr/share/doc/*/copyright.
-
-Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
-permitted by applicable law.
-Last login: Fri May 23 09:34:52 2025 from 192.168.4.2
-[?2004hpi4@raspberrypi:~$</msg>
-<status status="PASS" starttime="20250523 09:45:14.307" endtime="20250523 09:45:16.200"/>
+<msg timestamp="20250528 10:33:23.812" level="INFO">Logging into '192.168.4.1:22' as 'pi4'.</msg>
+<msg timestamp="20250528 10:33:26.827" level="FAIL">TimeoutError: timed out</msg>
+<status status="FAIL" starttime="20250528 10:33:23.812" endtime="20250528 10:33:26.989"/>
 </kw>
-<status status="PASS" starttime="20250523 09:45:14.304" endtime="20250523 09:45:16.200"/>
+<status status="FAIL" starttime="20250528 10:33:23.810" endtime="20250528 10:33:26.989"/>
 </kw>
 <kw name="EXECUTE SSH COMMAND" library="ssh_keywords">
-<arg>sudo iptables -D FORWARD -p tcp --dport 443 -s ${TARGET_IP} -j DROP</arg>
-<kw name="Execute Command" library="SSHLibrary">
-<var>${RESULT}</var>
+<var>${result}</var>
 <arg>${COMMAND}</arg>
-<doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
-<msg timestamp="20250523 09:45:16.205" level="INFO">Executing command 'sudo iptables -D FORWARD -p tcp --dport 443 -s 192.168.4.3 -j DROP'.</msg>
-<msg timestamp="20250523 09:45:16.262" level="INFO">Command exited with return code 1.</msg>
-<msg timestamp="20250523 09:45:16.263" level="INFO">${RESULT} = </msg>
-<status status="PASS" starttime="20250523 09:45:16.204" endtime="20250523 09:45:16.263"/>
+<status status="NOT RUN" starttime="20250528 10:33:26.989" endtime="20250528 10:33:26.990"/>
 </kw>
-<status status="PASS" starttime="20250523 09:45:16.202" endtime="20250523 09:45:16.264"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>2s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20250523 09:45:18.267" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20250523 09:45:16.265" endtime="20250523 09:45:18.269"/>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${result}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:26.990" endtime="20250528 10:33:26.990"/>
 </kw>
 <kw name="CLOSE SSH SESSION" library="ssh_keywords">
-<kw name="Close Connection" library="SSHLibrary">
-<doc>Closes the current connection.</doc>
-<status status="PASS" starttime="20250523 09:45:18.273" endtime="20250523 09:45:18.276"/>
+<status status="NOT RUN" starttime="20250528 10:33:26.990" endtime="20250528 10:33:26.991"/>
 </kw>
-<status status="PASS" starttime="20250523 09:45:18.271" endtime="20250523 09:45:18.277"/>
-</kw>
-<kw name="OPEN SSH SESSION" library="ssh_keywords">
-<arg>${HOST}</arg>
+<status status="FAIL" starttime="20250528 10:33:23.809" endtime="20250528 10:33:26.991">TimeoutError: timed out</status>
+</test>
+<status status="FAIL" starttime="20250528 10:33:23.389" endtime="20250528 10:33:26.993"/>
+</suite>
+<suite id="s1-s1-s3" name="Test Serial" source="C:\Users\arezgui\Desktop\Test\Keywords\test_serial.robot">
+<test id="s1-s1-s3-t1" name="Test Serial Connection" line="13">
+<kw name="Open Serial Connection" library="SerialKeywords">
 <arg>${PORT}</arg>
-<arg>${USERNAME}</arg>
-<arg>${PASSWORD}</arg>
-<kw name="Open Connection" library="SSHLibrary">
-<arg>${HOST}</arg>
-<arg>port=${PORT}</arg>
-<doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
-<status status="PASS" starttime="20250523 09:45:18.281" endtime="20250523 09:45:18.282"/>
+<arg>${BAUDRATE}</arg>
+<kw name="Open Port" library="SerialLibrary">
+<arg>${port}</arg>
+<doc>Opens specified port.</doc>
+<msg timestamp="20250528 10:33:27.063" level="FAIL">No such port.</msg>
+<status status="FAIL" starttime="20250528 10:33:27.063" endtime="20250528 10:33:27.113"/>
 </kw>
-<kw name="Login" library="SSHLibrary">
+<kw name="Set Port Parameter" library="SerialLibrary">
+<arg>baudrate</arg>
+<arg>${baudrate}</arg>
+<doc>Sets port parameter.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:27.113" endtime="20250528 10:33:27.114"/>
+</kw>
+<status status="FAIL" starttime="20250528 10:33:27.062" endtime="20250528 10:33:27.114"/>
+</kw>
+<kw name="Login" library="SerialKeywords">
 <arg>${USER}</arg>
 <arg>${PASSWORD}</arg>
-<doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
-<msg timestamp="20250523 09:45:18.283" level="INFO">Logging into '192.168.4.1:22' as 'pi4'.</msg>
-<msg timestamp="20250523 09:45:20.156" level="INFO">Read output: Linux raspberrypi 6.12.20+rpt-rpi-v8 #1 SMP PREEMPT Debian 1:6.12.20-1+rpt1~bpo12+1 (2025-03-19) aarch64
-
-The programs included with the Debian GNU/Linux system are free software;
-the exact distribution terms for each program are described in the
-individual files in /usr/share/doc/*/copyright.
-
-Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
-permitted by applicable law.
-Last login: Fri May 23 09:45:15 2025 from 192.168.4.2
-[?2004hpi4@raspberrypi:~$</msg>
-<status status="PASS" starttime="20250523 09:45:18.282" endtime="20250523 09:45:20.157"/>
+<status status="NOT RUN" starttime="20250528 10:33:27.114" endtime="20250528 10:33:27.114"/>
 </kw>
-<status status="PASS" starttime="20250523 09:45:18.279" endtime="20250523 09:45:20.158"/>
-</kw>
-<kw name="EXECUTE SSH COMMAND" library="ssh_keywords">
-<arg>sudo iptables -I FORWARD 1 -p tcp --dport 443 -s ${TARGET_IP} -j DROP</arg>
-<kw name="Execute Command" library="SSHLibrary">
-<var>${RESULT}</var>
+<kw name="Execute Command" library="SerialKeywords">
 <arg>${COMMAND}</arg>
-<doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
-<msg timestamp="20250523 09:45:20.162" level="INFO">Executing command 'sudo iptables -I FORWARD 1 -p tcp --dport 443 -s 192.168.4.3 -j DROP'.</msg>
-<msg timestamp="20250523 09:45:20.218" level="INFO">Command exited with return code 0.</msg>
-<msg timestamp="20250523 09:45:20.218" level="INFO">${RESULT} = </msg>
-<status status="PASS" starttime="20250523 09:45:20.161" endtime="20250523 09:45:20.218"/>
+<status status="NOT RUN" starttime="20250528 10:33:27.114" endtime="20250528 10:33:27.114"/>
 </kw>
-<status status="PASS" starttime="20250523 09:45:20.160" endtime="20250523 09:45:20.219"/>
+<kw name="Receive Result" library="SerialKeywords">
+<var>${output}</var>
+<arg>${TIMEOUT}</arg>
+<status status="NOT RUN" starttime="20250528 10:33:27.115" endtime="20250528 10:33:27.115"/>
 </kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>5s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20250523 09:45:25.221" level="INFO">Slept 5 seconds</msg>
-<status status="PASS" starttime="20250523 09:45:20.220" endtime="20250523 09:45:25.222"/>
+<kw name="Log" library="BuiltIn">
+<arg>${output}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:27.115" endtime="20250528 10:33:27.115"/>
 </kw>
-<kw name="CLOSE SSH SESSION" library="ssh_keywords">
-<kw name="Close Connection" library="SSHLibrary">
-<doc>Closes the current connection.</doc>
-<status status="PASS" starttime="20250523 09:45:25.225" endtime="20250523 09:45:25.228"/>
+<kw name="Close Serial Connection" library="SerialKeywords">
+<status status="NOT RUN" starttime="20250528 10:33:27.115" endtime="20250528 10:33:27.115"/>
 </kw>
-<status status="PASS" starttime="20250523 09:45:25.224" endtime="20250523 09:45:25.229"/>
+<status status="FAIL" starttime="20250528 10:33:27.062" endtime="20250528 10:33:27.116">No such port.</status>
+</test>
+<status status="FAIL" starttime="20250528 10:33:26.996" endtime="20250528 10:33:27.117"/>
+</suite>
+<suite id="s1-s1-s4" name="TestAPI" source="C:\Users\arezgui\Desktop\Test\Keywords\TestAPI.robot">
+<kw name="Create HTTP Session" library="API_Keywords" type="SETUP">
+<msg timestamp="20250528 10:33:28.063" level="FAIL">Keyword 'API_Keywords.Create HTTP Session' expected 2 arguments, got 0.</msg>
+<status status="FAIL" starttime="20250528 10:33:28.063" endtime="20250528 10:33:28.063"/>
 </kw>
+<test id="s1-s1-s4-t1" name="Test POST Request for Creating Pet" line="17">
+<status status="FAIL" starttime="20250528 10:33:28.063" endtime="20250528 10:33:28.064">Parent suite setup failed:
+Keyword 'API_Keywords.Create HTTP Session' expected 2 arguments, got 0.</status>
+</test>
+<test id="s1-s1-s4-t2" name="Test PUT Request for Updating Pet" line="29">
+<status status="FAIL" starttime="20250528 10:33:28.065" endtime="20250528 10:33:28.066">Parent suite setup failed:
+Keyword 'API_Keywords.Create HTTP Session' expected 2 arguments, got 0.</status>
+</test>
+<test id="s1-s1-s4-t3" name="Test DELETE Request for Deleting Pet" line="41">
+<status status="FAIL" starttime="20250528 10:33:28.067" endtime="20250528 10:33:28.068">Parent suite setup failed:
+Keyword 'API_Keywords.Create HTTP Session' expected 2 arguments, got 0.</status>
+</test>
+<kw name="Delete HTTP Session" library="API_Keywords" type="TEARDOWN">
+<kw name="Delete All Sessions" library="RequestsLibrary">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20250528 10:33:28.070" level="INFO">Deleting All Sessions</msg>
+<status status="PASS" starttime="20250528 10:33:28.070" endtime="20250528 10:33:28.070"/>
+</kw>
+<status status="PASS" starttime="20250528 10:33:28.070" endtime="20250528 10:33:28.070"/>
+</kw>
+<status status="FAIL" starttime="20250528 10:33:27.118" endtime="20250528 10:33:28.070">Suite setup failed:
+Keyword 'API_Keywords.Create HTTP Session' expected 2 arguments, got 0.</status>
+</suite>
+<status status="FAIL" starttime="20250528 10:33:23.220" endtime="20250528 10:33:28.073"/>
+</suite>
+<suite id="s1-s2" name="Test Auto HGW" source="C:\Users\arezgui\Desktop\Test\Test_Auto_HGW">
+<suite id="s1-s2-s1" name="Mqtt Test" source="C:\Users\arezgui\Desktop\Test\Test_Auto_HGW\mqtt_test.robot">
+<test id="s1-s2-s1-t1" name="Récupérer État Santé Raspberry MQTT" line="10">
+<kw name="Connect" library="MQTTLibrary">
+<arg>${BROKER_MQTT}</arg>
+<arg>${PORT_MQTT}</arg>
+<doc>Connect to an MQTT broker. This is a pre-requisite step for publish
+and subscribe keywords.</doc>
+<msg timestamp="20250528 10:33:29.127" level="INFO">Connecting to 192.168.4.1 at port 1883</msg>
+<msg timestamp="20250528 10:33:34.130" level="FAIL">TimeoutError: timed out</msg>
+<status status="FAIL" starttime="20250528 10:33:29.127" endtime="20250528 10:33:34.249"/>
+</kw>
+<kw name="Subscribe" library="MQTTLibrary">
+<var>@{messages}</var>
+<arg>${TOPIC}</arg>
+<arg>qos=${QOS}</arg>
+<arg>timeout=${TIMEOUT}</arg>
+<arg>limit=${LIMIT}</arg>
+<doc>Subscribe to a topic and return a list of message payloads received
+    within the specified time.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:34.250" endtime="20250528 10:33:34.250"/>
+</kw>
+<kw name="Length Should Be" library="BuiltIn">
+<arg>${messages}</arg>
+<arg>1</arg>
+<doc>Verifies that the length of the given item is correct.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:34.251" endtime="20250528 10:33:34.251"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${json_string}</var>
+<arg>${messages[0]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:34.251" endtime="20250528 10:33:34.252"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${data}</var>
+<arg>${json_string}</arg>
+<doc>Convert String to JSON object</doc>
+<status status="NOT RUN" starttime="20250528 10:33:34.252" endtime="20250528 10:33:34.252"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Température : ${data["temperature"]} °C</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:34.253" endtime="20250528 10:33:34.253"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Utilisation CPU : ${data["cpu_usage"]} %</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:34.254" endtime="20250528 10:33:34.254"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>RAM Totale : ${data["ram_total"]} Mo</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:34.255" endtime="20250528 10:33:34.255"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>RAM Utilisée : ${data["ram_used"]} Mo</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:34.256" endtime="20250528 10:33:34.256"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Espace disque total : ${data["disk_total"]} Go</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:34.257" endtime="20250528 10:33:34.257"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Espace disque utilisé : ${data["disk_used"]} Go</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:34.258" endtime="20250528 10:33:34.258"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>Température : ${data["temperature"]} °C , Utilisation CPU : ${data["cpu_usage"]} % , RAM Totale : ${data["ram_total"]} Mo , RAM Utilisée : ${data["ram_used"]} Mo , Espace disque total : ${data["disk_total"]} Go , Espace disque utilisé : ${data["disk_used"]} Go</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:34.259" endtime="20250528 10:33:34.259"/>
+</kw>
+<kw name="Disconnect" library="MQTTLibrary">
+<doc>Disconnect from MQTT Broker.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:34.260" endtime="20250528 10:33:34.260"/>
+</kw>
+<doc>Ce cas de test vérifie que le Raspberry Pi publie périodiquement des informations de diagnostic (température, CPU, RAM, disque) via MQTT.</doc>
+<status status="FAIL" starttime="20250528 10:33:29.126" endtime="20250528 10:33:34.261">TimeoutError: timed out</status>
+</test>
+<test id="s1-s2-s1-t2" name="Vérifier État Santé Raspberry" line="26">
+<kw name="Connect" library="MQTTLibrary">
+<arg>${BROKER_MQTT}</arg>
+<arg>${PORT_MQTT}</arg>
+<doc>Connect to an MQTT broker. This is a pre-requisite step for publish
+and subscribe keywords.</doc>
+<msg timestamp="20250528 10:33:34.265" level="INFO">Connecting to 192.168.4.1 at port 1883</msg>
+<msg timestamp="20250528 10:33:39.278" level="FAIL">TimeoutError: timed out</msg>
+<status status="FAIL" starttime="20250528 10:33:34.264" endtime="20250528 10:33:39.285"/>
+</kw>
+<kw name="Subscribe" library="MQTTLibrary">
+<var>@{messages}</var>
+<arg>${TOPIC}</arg>
+<arg>qos=${QOS}</arg>
+<arg>timeout=${TIMEOUT}</arg>
+<arg>limit=${LIMIT}</arg>
+<doc>Subscribe to a topic and return a list of message payloads received
+    within the specified time.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:39.287" endtime="20250528 10:33:39.287"/>
+</kw>
+<kw name="Length Should Be" library="BuiltIn">
+<arg>${messages}</arg>
+<arg>1</arg>
+<doc>Verifies that the length of the given item is correct.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:39.289" endtime="20250528 10:33:39.289"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${json_string}</var>
+<arg>${messages[0]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:39.290" endtime="20250528 10:33:39.290"/>
+</kw>
+<kw name="Convert String To Json" library="JSONLibrary">
+<var>${data}</var>
+<arg>${json_string}</arg>
+<doc>Convert String to JSON object</doc>
+<status status="NOT RUN" starttime="20250528 10:33:39.291" endtime="20250528 10:33:39.292"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>${data["temperature"]} &gt; ${TEMP_LIMIT}</arg>
+<arg>Fail</arg>
+<arg>Température trop élevée (${data["temperature"]} °C &gt; ${TEMP_LIMIT} °C)</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:39.293" endtime="20250528 10:33:39.293"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>${data["cpu_usage"]} &gt; ${CPU_LIMIT}</arg>
+<arg>Fail</arg>
+<arg>CPU trop sollicitée (${data["cpu_usage"]} % &gt; ${CPU_LIMIT} %)</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:39.295" endtime="20250528 10:33:39.295"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>${data["ram_used"]} &gt; ${RAM_USAGE_LIMIT}</arg>
+<arg>Fail</arg>
+<arg>RAM trop utilisée (${data["ram_used"]} Mo &gt; ${RAM_USAGE_LIMIT} Mo)</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:39.296" endtime="20250528 10:33:39.296"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>${data["disk_used"]} &gt; ${DISK_USAGE_LIMIT}</arg>
+<arg>Fail</arg>
+<arg>Disque presque plein (${data["disk_used"]} Go &gt; ${DISK_USAGE_LIMIT} Go)</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:39.298" endtime="20250528 10:33:39.298"/>
+</kw>
+<doc>Ce cas de test vérifie que les valeurs de diagnostic du Raspberry Pi sont inférieures aux seuils critiques définis.</doc>
+<status status="FAIL" starttime="20250528 10:33:34.263" endtime="20250528 10:33:39.300">TimeoutError: timed out</status>
+</test>
+<status status="FAIL" starttime="20250528 10:33:28.078" endtime="20250528 10:33:39.305"/>
+</suite>
+<suite id="s1-s2-s2" name="Tests Acces webmin" source="C:\Users\arezgui\Desktop\Test\Test_Auto_HGW\Tests_Acces_webmin.robot">
+<test id="s1-s2-s2-t1" name=" Vérifier l'Accès Réussi à Webmin avec Identifiants Valides" line="6">
 <kw name="Open a browser" library="SeleniumKeywords">
-<arg>${URL}</arg>
-<arg>Chrome</arg>
+<arg>${WEBMIN_URL}</arg>
+<arg>chrome</arg>
 <kw name="Open Browser" library="SeleniumLibrary">
 <arg>${url}</arg>
 <arg>${browser}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20250523 09:45:25.232" level="INFO">Opening browser 'Chrome' to base url 'https://google.com'.</msg>
-<msg timestamp="20250523 09:45:26.550" level="WARN">The chromedriver version (135.0.7049.95) detected in PATH at C:\Users\arezgui\AppData\Local\Programs\Python\Python313\Scripts\chromedriver.exe might not be compatible with the detected chrome version (136.0.7103.114); currently, chromedriver 136.0.7103.113 is recommended for chrome 136.*, so it is advised to delete the driver in PATH and retry</msg>
-<status status="PASS" starttime="20250523 09:45:25.231" endtime="20250523 09:45:50.808"/>
+<msg timestamp="20250528 10:33:40.045" level="INFO">Opening browser 'chrome' to base url 'http://192.168.4.1:10000'.</msg>
+<msg timestamp="20250528 10:33:43.512" level="WARN">The chromedriver version (135.0.7049.95) detected in PATH at C:\Users\arezgui\AppData\Local\Programs\Python\Python313\Scripts\chromedriver.exe might not be compatible with the detected chrome version (136.0.7103.114); currently, chromedriver 136.0.7103.113 is recommended for chrome 136.*, so it is advised to delete the driver in PATH and retry</msg>
+<status status="PASS" starttime="20250528 10:33:40.044" endtime="20250528 10:33:50.492"/>
 </kw>
 <kw name="Maximize Browser Window" library="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20250523 09:45:50.809" endtime="20250523 09:45:50.904"/>
+<msg timestamp="20250528 10:33:50.498" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=136.0.7103.114)
+Stacktrace:
+	GetHandleVerifier [0x00007FF741E55355+78597]
+	GetHandleVerifier [0x00007FF741E553B0+78688]
+	(No symbol) [0x00007FF741C091AA]
+	(No symbol) [0x00007FF741BE1B63]
+	(No symbol) [0x00007FF741C8EB6E]
+	(No symbol) [0x00007FF741CAEBB2]
+	(No symbol) [0x00007FF741C86EC3]
+	(No symbol) [0x00007FF741C503F8]
+	(No symbol) [0x00007FF741C51163]
+	GetHandleVerifier [0x00007FF7420FEF0D+2870973]
+	GetHandleVerifier [0x00007FF7420F96B8+2848360]
+	GetHandleVerifier [0x00007FF742116993+2967875]
+	GetHandleVerifier [0x00007FF741E7019A+188746]
+	GetHandleVerifier [0x00007FF741E7847F+222255]
+	GetHandleVerifier [0x00007FF741E5D2D4+111236]
+	GetHandleVerifier [0x00007FF741E5D482+111666]
+	GetHandleVerifier [0x00007FF741E435A9+5465]
+	BaseThreadInitThunk [0x00007FF87CD6259D+29]
+	RtlUserThreadStart [0x00007FF87E48AF58+40]
+</msg>
+<msg timestamp="20250528 10:33:50.503" level="FAIL">NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=136.0.7103.114)
+Stacktrace:
+	GetHandleVerifier [0x00007FF741E55355+78597]
+	GetHandleVerifier [0x00007FF741E553B0+78688]
+	(No symbol) [0x00007FF741C091AA]
+	(No symbol) [0x00007FF741BE1B63]
+	(No symbol) [0x00007FF741C8EB6E]
+	(No symbol) [0x00007FF741CAEBB2]
+	(No symbol) [0x00007FF741C86EC3]
+	(No symbol) [0x00007FF741C503F8]
+	(No symbol) [0x00007FF741C51163]
+	GetHandleVerifier [0x00007FF7420FEF0D+2870973]
+	GetHandleVerifier [0x00007FF7420F96B8+2848360]
+	GetHandleVerifier [0x00007FF742116993+2967875]
+	GetHandleVerifier [0x00007FF741E7019A+188746]
+	GetHandleVerifier [0x00007FF741E7847F+222255]
+	GetHandleVerifier [0x00007FF741E5D2D4+111236]
+	GetHandleVerifier [0x00007FF741E5D482+111666]
+	GetHandleVerifier [0x00007FF741E435A9+5465]
+	BaseThreadInitThunk [0x00007FF87CD6259D+29]
+	RtlUserThreadStart [0x00007FF87E48AF58+40]
+</msg>
+<status status="FAIL" starttime="20250528 10:33:50.492" endtime="20250528 10:33:50.700"/>
 </kw>
-<status status="PASS" starttime="20250523 09:45:25.230" endtime="20250523 09:45:50.905"/>
+<status status="FAIL" starttime="20250528 10:33:40.043" endtime="20250528 10:33:50.700"/>
 </kw>
-<kw name="Wait Until Page Contains" library="SeleniumLibrary">
-<arg>Ce site est inaccessible</arg>
-<arg>timeout=100s</arg>
-<doc>Waits until ``text`` appears on the current page.</doc>
-<msg timestamp="20250523 09:47:31.388" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-5.png"&gt;&lt;img src="selenium-screenshot-5.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg timestamp="20250523 09:47:31.389" level="FAIL">Text 'Ce site est inaccessible' did not appear in 1 minute 40 seconds.</msg>
-<status status="FAIL" starttime="20250523 09:45:50.908" endtime="20250523 09:47:31.489"/>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://*[@id="details-button"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:50.700" endtime="20250528 10:33:50.700"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://*[@id="proceed-link"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:50.701" endtime="20250528 10:33:50.701"/>
+</kw>
+<kw name="Input Text Into Selector" library="SeleniumKeywords">
+<arg>id=user</arg>
+<arg>${USERNAME}</arg>
+<status status="NOT RUN" starttime="20250528 10:33:50.701" endtime="20250528 10:33:50.701"/>
+</kw>
+<kw name="Input Text Into Selector" library="SeleniumKeywords">
+<arg>name=pass</arg>
+<arg>${PASSWORD}</arg>
+<status status="NOT RUN" starttime="20250528 10:33:50.702" endtime="20250528 10:33:50.702"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://button[@type="submit"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:50.702" endtime="20250528 10:33:50.702"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>Dashboard</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:50.702" endtime="20250528 10:33:50.702"/>
 </kw>
 <kw name="Close a Browser" library="SeleniumKeywords">
-<status status="NOT RUN" starttime="20250523 09:47:31.490" endtime="20250523 09:47:31.490"/>
+<status status="NOT RUN" starttime="20250528 10:33:50.703" endtime="20250528 10:33:50.703"/>
 </kw>
-<status status="FAIL" starttime="20250523 09:45:14.302" endtime="20250523 09:47:31.492">Text 'Ce site est inaccessible' did not appear in 1 minute 40 seconds.</status>
+<doc>Ce test vérifie que l'interface Webmin est accessible et fonctionnelle.</doc>
+<status status="FAIL" starttime="20250528 10:33:40.041" endtime="20250528 10:33:50.703">NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=136.0.7103.114)
+Stacktrace:
+	GetHandleVerifier [0x00007FF741E55355+78597]
+	GetHandleVerifier [0x00007FF741E553B0+78688]
+	(No symbol) [0x00007FF741C091AA]
+	(No symbol) [0x00007FF741BE1B63]
+	(No symbol) [0x00007FF741C8EB6E]
+	(No symbol) [0x00007FF741CAEBB2]
+	(No symbol) [0x00007FF741C86EC3]
+	(No symbol) [0x00007FF741C503F8]
+	(No symbol) [0x00007FF741C51163]
+	GetHandleVerifier [0x00007FF7420FEF0D+2870973]
+	GetHandleVerifier [0x00007FF7420F96B8+2848360]
+	GetHandleVerifier [0x00007FF742116993+2967875]
+	GetHandleVerifier [0x00007FF741E7019A+188746]
+	GetHandleVerifier [0x00007FF741E7847F+222255]
+	GetHandleVerifier [0x00007FF741E5D2D4+111236]
+	GetHandleVerifier [0x00007FF741E5D482+111666]
+	GetHandleVerifier [0x00007FF741E435A9+5465]
+	BaseThreadInitThunk [0x00007FF87CD6259D+29]
+	RtlUserThreadStart [0x00007FF87E48AF58+40]
+</status>
 </test>
-<status status="FAIL" starttime="20250523 09:45:13.030" endtime="20250523 09:47:31.496"/>
-</suite>
-<suite id="s1-s2" name="Tests firewall" source="c:\Users\arezgui\Desktop\Test\Test_Auto_HGW\Tests_firewall.robot">
-<test id="s1-s2-t1" name="Test Block HTTPS Access" line="8">
-<kw name="OPEN SSH SESSION" library="ssh_keywords">
-<arg>${HOST}</arg>
-<arg>${PORT}</arg>
-<arg>${USERNAME}</arg>
-<arg>${PASSWORD}</arg>
-<kw name="Open Connection" library="SSHLibrary">
-<arg>${HOST}</arg>
-<arg>port=${PORT}</arg>
-<doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
-<status status="PASS" starttime="20250523 09:47:31.514" endtime="20250523 09:47:31.515"/>
-</kw>
-<kw name="Login" library="SSHLibrary">
-<arg>${USER}</arg>
-<arg>${PASSWORD}</arg>
-<doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
-<msg timestamp="20250523 09:47:31.516" level="INFO">Logging into '192.168.4.1:22' as 'pi4'.</msg>
-<msg timestamp="20250523 09:47:33.507" level="INFO">Read output: Linux raspberrypi 6.12.20+rpt-rpi-v8 #1 SMP PREEMPT Debian 1:6.12.20-1+rpt1~bpo12+1 (2025-03-19) aarch64
-
-The programs included with the Debian GNU/Linux system are free software;
-the exact distribution terms for each program are described in the
-individual files in /usr/share/doc/*/copyright.
-
-Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
-permitted by applicable law.
-Last login: Fri May 23 09:45:19 2025 from 192.168.4.2
-[?2004hpi4@raspberrypi:~$</msg>
-<status status="PASS" starttime="20250523 09:47:31.515" endtime="20250523 09:47:33.507"/>
-</kw>
-<status status="PASS" starttime="20250523 09:47:31.512" endtime="20250523 09:47:33.508"/>
-</kw>
-<kw name="EXECUTE SSH COMMAND" library="ssh_keywords">
-<arg>sudo iptables -D FORWARD -p tcp --dport 443 -s ${TARGET_IP} -j DROP</arg>
-<kw name="Execute Command" library="SSHLibrary">
-<var>${RESULT}</var>
-<arg>${COMMAND}</arg>
-<doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
-<msg timestamp="20250523 09:47:33.511" level="INFO">Executing command 'sudo iptables -D FORWARD -p tcp --dport 443 -s 192.168.4.3 -j DROP'.</msg>
-<msg timestamp="20250523 09:47:33.597" level="INFO">Command exited with return code 0.</msg>
-<msg timestamp="20250523 09:47:33.598" level="INFO">${RESULT} = </msg>
-<status status="PASS" starttime="20250523 09:47:33.510" endtime="20250523 09:47:33.598"/>
-</kw>
-<status status="PASS" starttime="20250523 09:47:33.509" endtime="20250523 09:47:33.599"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>2s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20250523 09:47:35.602" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20250523 09:47:33.600" endtime="20250523 09:47:35.605"/>
-</kw>
-<kw name="CLOSE SSH SESSION" library="ssh_keywords">
-<kw name="Close Connection" library="SSHLibrary">
-<doc>Closes the current connection.</doc>
-<status status="PASS" starttime="20250523 09:47:35.610" endtime="20250523 09:47:35.614"/>
-</kw>
-<status status="PASS" starttime="20250523 09:47:35.608" endtime="20250523 09:47:35.615"/>
-</kw>
-<kw name="OPEN SSH SESSION" library="ssh_keywords">
-<arg>${HOST}</arg>
-<arg>${PORT}</arg>
-<arg>${USERNAME}</arg>
-<arg>${PASSWORD}</arg>
-<kw name="Open Connection" library="SSHLibrary">
-<arg>${HOST}</arg>
-<arg>port=${PORT}</arg>
-<doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
-<status status="PASS" starttime="20250523 09:47:35.619" endtime="20250523 09:47:35.620"/>
-</kw>
-<kw name="Login" library="SSHLibrary">
-<arg>${USER}</arg>
-<arg>${PASSWORD}</arg>
-<doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
-<msg timestamp="20250523 09:47:35.622" level="INFO">Logging into '192.168.4.1:22' as 'pi4'.</msg>
-<msg timestamp="20250523 09:47:37.591" level="INFO">Read output: Linux raspberrypi 6.12.20+rpt-rpi-v8 #1 SMP PREEMPT Debian 1:6.12.20-1+rpt1~bpo12+1 (2025-03-19) aarch64
-
-The programs included with the Debian GNU/Linux system are free software;
-the exact distribution terms for each program are described in the
-individual files in /usr/share/doc/*/copyright.
-
-Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
-permitted by applicable law.
-Last login: Fri May 23 09:47:32 2025 from 192.168.4.2
-[?2004hpi4@raspberrypi:~$</msg>
-<status status="PASS" starttime="20250523 09:47:35.620" endtime="20250523 09:47:37.593"/>
-</kw>
-<status status="PASS" starttime="20250523 09:47:35.618" endtime="20250523 09:47:37.593"/>
-</kw>
-<kw name="EXECUTE SSH COMMAND" library="ssh_keywords">
-<arg>sudo iptables -I FORWARD 1 -p tcp --dport 443 -s ${TARGET_IP} -j DROP</arg>
-<kw name="Execute Command" library="SSHLibrary">
-<var>${RESULT}</var>
-<arg>${COMMAND}</arg>
-<doc>Executes ``command`` on the remote machine and returns its outputs.</doc>
-<msg timestamp="20250523 09:47:37.599" level="INFO">Executing command 'sudo iptables -I FORWARD 1 -p tcp --dport 443 -s 192.168.4.3 -j DROP'.</msg>
-<msg timestamp="20250523 09:47:37.655" level="INFO">Command exited with return code 0.</msg>
-<msg timestamp="20250523 09:47:37.655" level="INFO">${RESULT} = </msg>
-<status status="PASS" starttime="20250523 09:47:37.598" endtime="20250523 09:47:37.656"/>
-</kw>
-<status status="PASS" starttime="20250523 09:47:37.596" endtime="20250523 09:47:37.656"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>5s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20250523 09:47:42.658" level="INFO">Slept 5 seconds</msg>
-<status status="PASS" starttime="20250523 09:47:37.657" endtime="20250523 09:47:42.659"/>
-</kw>
-<kw name="CLOSE SSH SESSION" library="ssh_keywords">
-<kw name="Close Connection" library="SSHLibrary">
-<doc>Closes the current connection.</doc>
-<status status="PASS" starttime="20250523 09:47:42.662" endtime="20250523 09:47:42.664"/>
-</kw>
-<status status="PASS" starttime="20250523 09:47:42.660" endtime="20250523 09:47:42.664"/>
-</kw>
+<test id="s1-s2-s2-t2" name="Vérifier l'Accès Échoué à Webmin avec Identifiants Invalides" line="16">
 <kw name="Open a browser" library="SeleniumKeywords">
-<arg>${URL}</arg>
-<arg>Chrome</arg>
+<arg>${WEBMIN_URL}</arg>
+<arg>chrome</arg>
 <kw name="Open Browser" library="SeleniumLibrary">
 <arg>${url}</arg>
 <arg>${browser}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20250523 09:47:42.670" level="INFO">Opening browser 'Chrome' to base url 'https://google.com'.</msg>
-<msg timestamp="20250523 09:47:43.842" level="WARN">The chromedriver version (135.0.7049.95) detected in PATH at C:\Users\arezgui\AppData\Local\Programs\Python\Python313\Scripts\chromedriver.exe might not be compatible with the detected chrome version (136.0.7103.114); currently, chromedriver 136.0.7103.113 is recommended for chrome 136.*, so it is advised to delete the driver in PATH and retry</msg>
-<status status="PASS" starttime="20250523 09:47:42.667" endtime="20250523 09:48:16.859"/>
+<msg timestamp="20250528 10:33:50.708" level="INFO">Opening browser 'chrome' to base url 'http://192.168.4.1:10000'.</msg>
+<msg timestamp="20250528 10:33:51.509" level="WARN">The chromedriver version (135.0.7049.95) detected in PATH at C:\Users\arezgui\AppData\Local\Programs\Python\Python313\Scripts\chromedriver.exe might not be compatible with the detected chrome version (136.0.7103.114); currently, chromedriver 136.0.7103.113 is recommended for chrome 136.*, so it is advised to delete the driver in PATH and retry</msg>
+<status status="PASS" starttime="20250528 10:33:50.707" endtime="20250528 10:33:58.607"/>
 </kw>
 <kw name="Maximize Browser Window" library="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20250523 09:48:16.860" endtime="20250523 09:48:16.935"/>
+<msg timestamp="20250528 10:33:58.625" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=136.0.7103.114)
+Stacktrace:
+	GetHandleVerifier [0x00007FF741E55355+78597]
+	GetHandleVerifier [0x00007FF741E553B0+78688]
+	(No symbol) [0x00007FF741C091AA]
+	(No symbol) [0x00007FF741BE1B63]
+	(No symbol) [0x00007FF741C8EB6E]
+	(No symbol) [0x00007FF741CAEBB2]
+	(No symbol) [0x00007FF741C86EC3]
+	(No symbol) [0x00007FF741C503F8]
+	(No symbol) [0x00007FF741C51163]
+	GetHandleVerifier [0x00007FF7420FEF0D+2870973]
+	GetHandleVerifier [0x00007FF7420F96B8+2848360]
+	GetHandleVerifier [0x00007FF742116993+2967875]
+	GetHandleVerifier [0x00007FF741E7019A+188746]
+	GetHandleVerifier [0x00007FF741E7847F+222255]
+	GetHandleVerifier [0x00007FF741E5D2D4+111236]
+	GetHandleVerifier [0x00007FF741E5D482+111666]
+	GetHandleVerifier [0x00007FF741E435A9+5465]
+	BaseThreadInitThunk [0x00007FF87CD6259D+29]
+	RtlUserThreadStart [0x00007FF87E48AF58+40]
+</msg>
+<msg timestamp="20250528 10:33:58.633" level="FAIL">NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=136.0.7103.114)
+Stacktrace:
+	GetHandleVerifier [0x00007FF741E55355+78597]
+	GetHandleVerifier [0x00007FF741E553B0+78688]
+	(No symbol) [0x00007FF741C091AA]
+	(No symbol) [0x00007FF741BE1B63]
+	(No symbol) [0x00007FF741C8EB6E]
+	(No symbol) [0x00007FF741CAEBB2]
+	(No symbol) [0x00007FF741C86EC3]
+	(No symbol) [0x00007FF741C503F8]
+	(No symbol) [0x00007FF741C51163]
+	GetHandleVerifier [0x00007FF7420FEF0D+2870973]
+	GetHandleVerifier [0x00007FF7420F96B8+2848360]
+	GetHandleVerifier [0x00007FF742116993+2967875]
+	GetHandleVerifier [0x00007FF741E7019A+188746]
+	GetHandleVerifier [0x00007FF741E7847F+222255]
+	GetHandleVerifier [0x00007FF741E5D2D4+111236]
+	GetHandleVerifier [0x00007FF741E5D482+111666]
+	GetHandleVerifier [0x00007FF741E435A9+5465]
+	BaseThreadInitThunk [0x00007FF87CD6259D+29]
+	RtlUserThreadStart [0x00007FF87E48AF58+40]
+</msg>
+<status status="FAIL" starttime="20250528 10:33:58.608" endtime="20250528 10:33:58.637"/>
 </kw>
-<status status="PASS" starttime="20250523 09:47:42.666" endtime="20250523 09:48:16.936"/>
+<status status="FAIL" starttime="20250528 10:33:50.706" endtime="20250528 10:33:58.638"/>
 </kw>
-<kw name="Wait Until Page Contains" library="SeleniumLibrary">
-<arg>Ce site est inaccessible</arg>
-<arg>timeout=100s</arg>
-<doc>Waits until ``text`` appears on the current page.</doc>
-<msg timestamp="20250523 09:49:57.409" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-6.png"&gt;&lt;img src="selenium-screenshot-6.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg timestamp="20250523 09:49:57.410" level="FAIL">Text 'Ce site est inaccessible' did not appear in 1 minute 40 seconds.</msg>
-<status status="FAIL" starttime="20250523 09:48:16.943" endtime="20250523 09:49:57.415"/>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://*[@id="details-button"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:58.638" endtime="20250528 10:33:58.639"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://*[@id="proceed-link"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:58.650" endtime="20250528 10:33:58.650"/>
+</kw>
+<kw name="Input Text Into Selector" library="SeleniumKeywords">
+<arg>id=user</arg>
+<arg>${INVALID_USER}</arg>
+<status status="NOT RUN" starttime="20250528 10:33:58.652" endtime="20250528 10:33:58.652"/>
+</kw>
+<kw name="Input Text Into Selector" library="SeleniumKeywords">
+<arg>name=pass</arg>
+<arg>${INVALID_PASS}</arg>
+<status status="NOT RUN" starttime="20250528 10:33:58.653" endtime="20250528 10:33:58.653"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://button[@type="submit"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:58.654" endtime="20250528 10:33:58.654"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>Login failed. Please try again.</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="NOT RUN" starttime="20250528 10:33:58.655" endtime="20250528 10:33:58.655"/>
 </kw>
 <kw name="Close a Browser" library="SeleniumKeywords">
-<status status="NOT RUN" starttime="20250523 09:49:57.416" endtime="20250523 09:49:57.417"/>
+<status status="NOT RUN" starttime="20250528 10:33:58.656" endtime="20250528 10:33:58.656"/>
 </kw>
-<status status="FAIL" starttime="20250523 09:47:31.511" endtime="20250523 09:49:57.418">Text 'Ce site est inaccessible' did not appear in 1 minute 40 seconds.</status>
+<doc>Ce cas de test vérifie qu’un message d’erreur s’affiche lors d’une tentative de connexion avec des identifiants invalides.</doc>
+<status status="FAIL" starttime="20250528 10:33:50.705" endtime="20250528 10:33:58.656">NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=136.0.7103.114)
+Stacktrace:
+	GetHandleVerifier [0x00007FF741E55355+78597]
+	GetHandleVerifier [0x00007FF741E553B0+78688]
+	(No symbol) [0x00007FF741C091AA]
+	(No symbol) [0x00007FF741BE1B63]
+	(No symbol) [0x00007FF741C8EB6E]
+	(No symbol) [0x00007FF741CAEBB2]
+	(No symbol) [0x00007FF741C86EC3]
+	(No symbol) [0x00007FF741C503F8]
+	(No symbol) [0x00007FF741C51163]
+	GetHandleVerifier [0x00007FF7420FEF0D+2870973]
+	GetHandleVerifier [0x00007FF7420F96B8+2848360]
+	GetHandleVerifier [0x00007FF742116993+2967875]
+	GetHandleVerifier [0x00007FF741E7019A+188746]
+	GetHandleVerifier [0x00007FF741E7847F+222255]
+	GetHandleVerifier [0x00007FF741E5D2D4+111236]
+	GetHandleVerifier [0x00007FF741E5D482+111666]
+	GetHandleVerifier [0x00007FF741E435A9+5465]
+	BaseThreadInitThunk [0x00007FF87CD6259D+29]
+	RtlUserThreadStart [0x00007FF87E48AF58+40]
+</status>
 </test>
-<status status="FAIL" starttime="20250523 09:47:31.500" endtime="20250523 09:49:57.431"/>
+<status status="FAIL" starttime="20250528 10:33:39.318" endtime="20250528 10:33:58.659"/>
 </suite>
-<status status="FAIL" starttime="20250523 09:45:12.997" endtime="20250523 09:49:57.438"/>
+<suite id="s1-s2-s3" name="Tests Attribution ip automatique" source="C:\Users\arezgui\Desktop\Test\Test_Auto_HGW\Tests_Attribution_ip_automatique.robot">
+<test id="s1-s2-s3-t1" name="Vérifier l'attribution automatique d'adresse IP aux appareils connectés" line="8">
+<kw name="OPEN SSH SESSION" library="ssh_keywords">
+<arg>${HOST}</arg>
+<arg>${PORT}</arg>
+<arg>${USERNAME}</arg>
+<arg>${PASSWORD}</arg>
+<kw name="Open Connection" library="SSHLibrary">
+<arg>${HOST}</arg>
+<arg>port=${PORT}</arg>
+<doc>Opens a new SSH connection to the given ``host`` and ``port``.</doc>
+<status status="PASS" starttime="20250528 10:33:58.718" endtime="20250528 10:33:58.721"/>
+</kw>
+<kw name="Login" library="SSHLibrary">
+<arg>${USER}</arg>
+<arg>${PASSWORD}</arg>
+<doc>Logs into the SSH server with the given ``username`` and ``password``.</doc>
+<msg timestamp="20250528 10:33:58.722" level="INFO">Logging into '192.168.4.1:22' as 'pi4'.</msg>
+<msg timestamp="20250528 10:34:01.729" level="FAIL">TimeoutError: timed out</msg>
+<status status="FAIL" starttime="20250528 10:33:58.721" endtime="20250528 10:34:01.733"/>
+</kw>
+<status status="FAIL" starttime="20250528 10:33:58.717" endtime="20250528 10:34:01.733"/>
+</kw>
+<kw name="EXECUTE SSH COMMAND" library="ssh_keywords">
+<var>${leases}</var>
+<arg>cat /var/lib/misc/dnsmasq.leases</arg>
+<status status="NOT RUN" starttime="20250528 10:34:01.734" endtime="20250528 10:34:01.734"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${leases}</arg>
+<arg>${MAC}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20250528 10:34:01.734" endtime="20250528 10:34:01.734"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${leases}</arg>
+<arg>192.168.4.</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20250528 10:34:01.735" endtime="20250528 10:34:01.735"/>
+</kw>
+<kw name="CLOSE SSH SESSION" library="ssh_keywords">
+<status status="NOT RUN" starttime="20250528 10:34:01.736" endtime="20250528 10:34:01.736"/>
+</kw>
+<doc>Ce cas de test vérifie que le service DHCP attribue correctement une adresse IP à un appareil connecté.</doc>
+<status status="FAIL" starttime="20250528 10:33:58.715" endtime="20250528 10:34:01.737">TimeoutError: timed out</status>
+</test>
+<status status="FAIL" starttime="20250528 10:33:58.661" endtime="20250528 10:34:01.739"/>
 </suite>
-<statistics>
-<total>
-<stat pass="0" fail="2" skip="0">All Tests</stat>
-</total>
-<tag>
-</tag>
-<suite>
-<stat pass="0" fail="2" skip="0" id="s1" name="Tests Firewall &amp; Tests firewall">Tests Firewall &amp; Tests firewall</stat>
-<stat pass="0" fail="1" skip="0" id="s1-s1" name="Tests Firewall">Tests Firewall &amp; Tests firewall.Tests Firewall</stat>
-<stat pass="0" fail="1" skip="0" id="s1-s2" name="Tests firewall">Tests Firewall &amp; Tests firewall.Tests firewall</stat>
-</suite>
-</statistics>
-<errors>
-<msg timestamp="20250523 09:45:26.550" level="WARN">The chromedriver version (135.0.7049.95) detected in PATH at C:\Users\arezgui\AppData\Local\Programs\Python\Python313\Scripts\chromedriver.exe might not be compatible with the detected chrome version (136.0.7103.114); currently, chromedriver 136.0.7103.113 is recommended for chrome 136.*, so it is advised to delete the driver in PATH and retry</msg>
-<msg timestamp="20250523 09:47:43.842" level="WARN">The chromedriver version (135.0.7049.95) detected in PATH at C:\Users\arezgui\AppData\Local\Programs\Python\Python313\Scripts\chromedriver.exe might not be compatible with the detected chrome version (136.0.7103.114); currently, chromedriver 136.0.7103.113 is recommended for chrome 136.*, so it is advised to delete the driver in PATH and retry</msg>
-</errors>
-</robot>
+<suite id="s1-s2-s4" name="Tests Connectivité" source="C:\Users\arezgui\Desktop\Test\Test_Auto_HGW\Tests_Connectivité.robot">
+<test id="s1-s2-s4-t1" name="Vérifier que le point d'accès est actif" line="6">
+<kw name="OPEN SSH SESSION" library="ssh_keywords">
+<arg>${HOST}</arg>
+<arg>${PORT}</arg>
+<arg>${USERNAME}</arg>
+<arg>${PASSWORD}</arg>
+<kw name="Open Connection" library="SSHLibrary">
